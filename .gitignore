@@ -38,3 +38,12 @@ scripts/api.log
 
 # 抓图凭据
 scripts/cookies.txt
+
+# Render API 调试产物
+owners.json
+pushout.txt
+push_err.txt
+repo_info.json
+svc_body.json
+svc_resp.json
+vis.json

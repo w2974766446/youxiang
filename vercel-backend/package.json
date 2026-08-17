@@ -1,0 +1,10 @@
+{
+  "name": "selection-mail-backend",
+  "version": "1.0.0",
+  "description": "达人选品邮件后端 (Vercel Serverless)",
+  "private": true,
+  "dependencies": {
+    "exceljs": "^4.4.0",
+    "nodemailer": "^6.9.14"
+  }
+}
