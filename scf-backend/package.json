@@ -1,0 +1,10 @@
+{
+  "name": "scf-send-selection",
+  "version": "1.0.0",
+  "description": "达人选品提交自动发邮件 - 腾讯云函数",
+  "main": "index.js",
+  "dependencies": {
+    "nodemailer": "^6.9.13",
+    "exceljs": "^4.4.0"
+  }
+}

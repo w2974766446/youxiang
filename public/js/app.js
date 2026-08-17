@@ -493,7 +493,8 @@
         else toast(d.error || '提交失败');
       } else if (BACKEND_URL) {
         // 静态站点 + 已配置公共后端：把选款明细发给后端，由后端用自有 SMTP 发信到管理员邮箱
-        const apiUrl = BACKEND_URL.endsWith('/send-selection') ? BACKEND_URL : BACKEND_URL + '/api/selection/submit';
+        // 腾讯云 SCF 函数 URL 直接响应根路径，无需额外路径后缀
+        const apiUrl = BACKEND_URL.replace(/\/$/, '');
         let res;
         try {
           res = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...payload, items }) });
