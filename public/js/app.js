@@ -481,23 +481,38 @@
     const nickname = $('#submitterInput').value.trim();
     if (!nickname) { toast('请填写达人昵称'); $('#submitterInput').focus(); return; }
     const payload = { submitter: nickname, remark: $('#remarkInput').value.trim() };
-    if (MODE === 'api') {
-      // 提交至选品台后台（持久化汇总，仅管理员可见），无需提交人邮箱
-      const res = await fetch('/api/selection/submit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...payload, sessionId: SID }) });
-      const d = await res.json().catch(() => ({}));
-      if (d.ok) { toast(d.message || '已提交至选品台后台'); closeModal('#submitModal'); closeModal('#listModal'); updateSelCount(); loadProducts(); }
-      else toast(d.error || '提交失败');
-    } else if (BACKEND_URL) {
-      // 静态站点 + 已配置公共后端：把选款明细发给后端，由后端用自有 SMTP 发信到管理员邮箱
-      const res = await fetch(BACKEND_URL + '/api/selection/submit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...payload, items }) });
-      const d = await res.json().catch(() => ({}));
-      if (d.ok) { toast(d.message || '已提交，选品表已发往管理员邮箱'); closeModal('#submitModal'); closeModal('#listModal'); updateSelCount(); loadProducts(); }
-      else toast(d.error || '提交失败');
-    } else {
-      // 未配置公网邮件后端：兜底下载 Excel，避免选款丢失（需部署后端并配置 __BACKEND_URL__ 才能自动发邮件）
-      exportExcelClient(items);
-      toast('已生成选款 Excel（当前站点未配置邮件后端，请手动发送）');
-      closeModal('#submitModal'); closeModal('#listModal'); updateSelCount(); loadProducts();
+    const btn = $('#submitConfirm');
+    const oldText = btn.textContent;
+    btn.disabled = true; btn.textContent = '发送中…';
+    try {
+      if (MODE === 'api') {
+        // 提交至选品台后台（持久化汇总，仅管理员可见），无需提交人邮箱
+        const res = await fetch('/api/selection/submit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...payload, sessionId: SID }) });
+        const d = await res.json().catch(() => ({}));
+        if (d.ok) { toast(d.message || '已提交至选品台后台'); closeModal('#submitModal'); closeModal('#listModal'); updateSelCount(); loadProducts(); }
+        else toast(d.error || '提交失败');
+      } else if (BACKEND_URL) {
+        // 静态站点 + 已配置公共后端：把选款明细发给后端，由后端用自有 SMTP 发信到管理员邮箱
+        let res;
+        try {
+          res = await fetch(BACKEND_URL + '/api/selection/submit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...payload, items }) });
+        } catch (e) {
+          toast('无法连接邮件服务器（' + (e.name || '网络错误') + '），请重试或导出 Excel');
+          return;
+        }
+        const d = await res.json().catch(() => ({}));
+        if (d.ok) { toast(d.message || '已提交，选品表已发往管理员邮箱'); closeModal('#submitModal'); closeModal('#listModal'); updateSelCount(); loadProducts(); }
+        else toast((d.error || '提交失败') + '（后端返回 ' + res.status + '）');
+      } else {
+        // 未配置公网邮件后端：兜底下载 Excel，避免选款丢失（需部署后端并配置 __BACKEND_URL__ 才能自动发邮件）
+        exportExcelClient(items);
+        toast('已生成选款 Excel（当前站点未配置邮件后端，请手动发送）');
+        closeModal('#submitModal'); closeModal('#listModal'); updateSelCount(); loadProducts();
+      }
+    } catch (e) {
+      toast('提交出错：' + (e && e.message ? e.message : e));
+    } finally {
+      btn.disabled = false; btn.textContent = oldText;
     }
   }
 
