@@ -1,0 +1,110 @@
+[
+  {
+    "id": "SMSSMMZBO543",
+    "time": "2026/8/14 15:29:52",
+    "createdAt": "2026-08-14T07:29:52.211Z",
+    "submitter": "验证测试",
+    "remark": "本地后端发邮件验证",
+    "count": 2,
+    "items": [
+      {
+        "brand": "初语",
+        "styleNo": "8613041",
+        "category": "毛衣/针织衫",
+        "dailyPrice": 179,
+        "influencerPrice": 159,
+        "commission": 0.2,
+        "material": "50.8%粘纤 29.8%聚酯纤维 19.4%锦纶",
+        "color": "黑色,灰色",
+        "sellingPoint": "聚酯纤维挺括耐穿，柔软慵懒版型，黑色显瘦百搭。",
+        "stock": 478,
+        "note": "验证提交"
+      },
+      {
+        "brand": "茵曼",
+        "styleNo": "28628324",
+        "category": "配件",
+        "dailyPrice": 59,
+        "influencerPrice": 39,
+        "commission": 0.2,
+        "material": "100%粘纤            规格：100cm*42cm",
+        "color": "天蓝色、浅咖色、米白色、绿色、黄色",
+        "sellingPoint": "粘纤垂顺亲肤，白色清爽百搭。",
+        "stock": 867,
+        "note": "验证提交"
+      }
+    ]
+  },
+  {
+    "id": "SMSSASS7T354",
+    "time": "2026/8/14 09:58:27",
+    "createdAt": "2026-08-14T01:58:27.545Z",
+    "submitter": "图片列测试2",
+    "remark": "两款均有图",
+    "count": 2,
+    "items": [
+      {
+        "brand": "初语",
+        "styleNo": "8512017",
+        "category": "T恤/背心",
+        "dailyPrice": 199,
+        "influencerPrice": 99,
+        "commission": 0.2,
+        "material": "棉",
+        "color": "白",
+        "sellingPoint": "亲肤透气,版型宽松",
+        "stock": 50,
+        "note": "主推"
+      },
+      {
+        "brand": "初语",
+        "styleNo": "8523068",
+        "category": "连衣裙",
+        "dailyPrice": 259,
+        "influencerPrice": 129,
+        "commission": 0.2,
+        "material": "雪纺",
+        "color": "杏",
+        "sellingPoint": "垂感好,显瘦",
+        "stock": 33,
+        "note": ""
+      }
+    ]
+  },
+  {
+    "id": "SMSSARX3R420",
+    "time": "2026/8/14 09:57:47",
+    "createdAt": "2026-08-14T01:57:47.223Z",
+    "submitter": "图片列测试",
+    "remark": "验证B列图片",
+    "count": 2,
+    "items": [
+      {
+        "brand": "初语",
+        "styleNo": "8512017",
+        "category": "T恤/背心",
+        "dailyPrice": 199,
+        "influencerPrice": 99,
+        "commission": 0.2,
+        "material": "棉",
+        "color": "白",
+        "sellingPoint": "亲肤透气,版型宽松",
+        "stock": 50,
+        "note": "主推"
+      },
+      {
+        "brand": "茵曼",
+        "styleNo": "M002",
+        "category": "毛衣/针织衫",
+        "dailyPrice": 299,
+        "influencerPrice": 159,
+        "commission": 0.25,
+        "material": "羊毛",
+        "color": "米",
+        "sellingPoint": "保暖柔软,显瘦",
+        "stock": 8,
+        "note": ""
+      }
+    ]
+  }
+]

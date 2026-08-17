@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>选品台后台 · 提交汇总</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    body { background: #f3f4f6; }
+    .admin { max-width: 720px; margin: 0 auto; padding: 14px; }
+    .admin__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .admin__head h1 { font-size: 17px; margin: 0; }
+    .admin__total { color: var(--muted); font-size: 13px; }
+    .login { max-width: 320px; margin: 18vh auto 0; background: #fff; border-radius: 14px; padding: 22px; box-shadow: 0 6px 24px rgba(0,0,0,.08); }
+    .login h2 { margin: 0 0 14px; font-size: 16px; }
+    .login input { width: 100%; box-sizing: border-box; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; margin-bottom: 10px; font-size: 14px; }
+    .sub-row { display: flex; gap: 8px; align-items: center; padding: 12px; background: #fff; border-radius: 12px; margin-bottom: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.04); }
+    .sub-row .meta { flex: 1; min-width: 0; }
+    .sub-row .t { font-size: 14px; font-weight: 600; }
+    .sub-row .s { font-size: 12px; color: var(--muted); margin-top: 3px; }
+    .sub-row .acts { display: flex; gap: 6px; }
+    .btn-sm { border: 1px solid var(--line); background: #fff; border-radius: 8px; padding: 6px 10px; font-size: 12px; cursor: pointer; }
+    .btn-sm.danger { color: #cf1322; border-color: #ffccc7; }
+    .detail-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .detail-table th, .detail-table td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; }
+    .detail-table th { background: #2b2b2b; color: #fff; }
+    .empty { text-align: center; color: var(--muted); padding: 40px 0; }
+  </style>
+</head>
+<body>
+  <!-- 登录 -->
+  <div id="loginBox" class="login">
+    <h2>选品台后台 · 管理员登录</h2>
+    <input id="passInput" type="password" placeholder="请输入管理口令" />
+    <button id="loginBtn" class="btn-primary block">进入后台</button>
+    <p id="loginErr" class="hint" style="color:#cf1322"></p>
+  </div>
+
+  <!-- 后台主体 -->
+  <div id="adminBox" class="admin" style="display:none">
+    <div class="admin__head">
+      <h1>选品台后台 · 提交汇总</h1>
+      <span class="admin__total" id="totalTxt"></span>
+    </div>
+    <div id="subList"></div>
+    <div id="emptyTip" class="empty" style="display:none">暂无提交记录</div>
+  </div>
+
+  <!-- 详情弹窗 -->
+  <div id="detailModal" class="modal">
+    <div class="modal__mask"></div>
+    <div class="modal__panel" style="max-width:680px">
+      <div class="modal__head">提交详情 <button id="detailClose" class="modal__close">×</button></div>
+      <div class="modal__body">
+        <div id="detailInfo" class="hint"></div>
+        <div id="detailTable" style="margin-top:10px;overflow:auto"></div>
+      </div>
+      <div class="modal__foot">
+        <button id="detailExport" class="btn-primary">导出 Excel</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="js/admin.js"></script>
+</body>
+</html>

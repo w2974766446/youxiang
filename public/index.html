@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>达人选品台</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- 公网静态站提交发邮件所需的后端地址；由部署时写入。留空则提交降级为前端下载。
+       也可通过访问链接追加 ?backend=https://你的公网后端 临时覆盖。 -->
+  <script>window.__BACKEND_URL__ = '';</script>
+</head>
+<body>
+  <!-- 顶部栏 -->
+  <header class="topbar">
+    <div class="topbar__title">达人选品台</div>
+    <div class="topbar__search">
+      <input id="searchInput" type="search" placeholder="搜款号 / 材质 / 颜色 / 卖点" />
+    </div>
+    <button id="filterBtn" class="topbar__filter">筛选 品类/价格</button>
+  </header>
+
+  <!-- 品牌切换条（顶端重点区分） -->
+  <div class="brandbar" id="brandBar"></div>
+
+  <!-- 排序条 -->
+  <div class="sortbar">
+    <button class="sortbar__item active" data-sort="">综合</button>
+    <button class="sortbar__item" data-sort="price_asc">价格（从低到高）</button>
+    <button class="sortbar__item" data-sort="price_desc">价格（从高到低）</button>
+    <button class="sortbar__item" data-sort="stock_desc">库存（从高到低）</button>
+    <span id="resultCount" class="sortbar__count"></span>
+  </div>
+
+  <!-- 已选筛选展示条 -->
+  <div class="active-filters" id="activeFilters"></div>
+
+  <!-- 商品列表 -->
+  <main id="productList" class="product-list"></main>
+
+  <!-- 底部选款栏 -->
+  <div class="bottombar">
+    <div class="bottombar__info">已选 <b id="selCount">0</b> 款</div>
+    <button id="openListBtn" class="bottombar__list">查看选款清单</button>
+    <button id="submitBtn" class="bottombar__submit">一键提交</button>
+  </div>
+
+  <!-- 筛选抽屉 -->
+  <div id="filterDrawer" class="drawer">
+    <div class="drawer__mask"></div>
+    <div class="drawer__panel">
+      <div class="drawer__head">筛选条件 <button id="filterClose" class="drawer__close">×</button></div>
+      <div class="drawer__body">
+        <div class="field"><label>类目（可多选，已合并）</label><div id="fCategory" class="chips"></div></div>
+        <div class="field"><label>价格段（可多选）</label><div id="fPrice" class="chips"></div></div>
+      </div>
+      <div class="drawer__foot">
+        <button id="filterReset" class="btn-ghost">重置</button>
+        <button id="filterApply" class="btn-primary">应用</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 商品详情 -->
+  <div id="detailModal" class="modal">
+    <div class="modal__mask"></div>
+    <div class="modal__panel">
+      <button id="detailClose" class="modal__close">×</button>
+      <div id="detailCarousel" class="carousel"></div>
+      <div class="modal__body" id="detailBody"></div>
+      <div class="modal__foot">
+        <button id="detailToggle" class="btn-primary block"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 选款清单 -->
+  <div id="listModal" class="modal">
+    <div class="modal__mask"></div>
+    <div class="modal__panel modal__panel--full">
+      <div class="modal__head">选款清单 <button id="listClose" class="modal__close">×</button></div>
+      <div id="listBody" class="modal__body"></div>
+      <div class="modal__foot">
+        <button id="listExport" class="btn-ghost">导出Excel</button>
+        <button id="listSubmit" class="btn-primary">提交并发送邮件</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 提交表单 -->
+  <div id="submitModal" class="modal">
+    <div class="modal__mask"></div>
+    <div class="modal__panel">
+      <div class="modal__head">提交选款 <button id="submitClose" class="modal__close">×</button></div>
+      <div class="modal__body">
+        <div class="submit-to">提交后选款表格将进入「选品台后台」汇总<br><span class="muted">含选品时间、达人昵称等信息，仅管理员可见，无需填写邮箱</span></div>
+        <div class="field"><label>达人昵称 <span class="req">*</span></label><input id="submitterInput" type="text" placeholder="请输入达人昵称（必填）" /></div>
+        <div class="field"><label>备注</label><input id="remarkInput" type="text" placeholder="选品说明（可选）" /></div>
+        <p id="submitHint" class="hint"></p>
+      </div>
+      <div class="modal__foot">
+        <button id="submitConfirm" class="btn-primary block">确认发送</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="vendor/xlsx.full.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

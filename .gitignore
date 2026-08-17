@@ -1,0 +1,40 @@
+# 依赖
+node_modules/
+
+# 本地密钥（部署时用 Render 环境变量，不进仓库）
+.env
+
+# 运行产物 / 缓存 / 大体积本地资源
+data/images/
+data/exports/
+data/inbox/
+data/selection-*.xlsx
+data/selection-*.html
+data/_*.json
+data/_*.html
+
+# 抓图 / 调试辅助（可能含凭据或体积大）
+scripts/*.log
+scripts/auth.json
+scripts/analysis_page.html
+scripts/capture.log
+scripts/batch.log
+scripts/api.log
+
+# 系统 & 编辑器
+.DS_Store
+*.log
+
+# WorkBuddy 工作区数据
+.workbuddy/
+
+# 浏览器 profile（含登录态/cookies/缓存，绝不入库）
+.browser_profile/
+.browser_profile_*/
+.browser_profile_bi*/
+
+# 内网穿透 / 隧道二进制
+.tunnel/
+
+# 抓图凭据
+scripts/cookies.txt

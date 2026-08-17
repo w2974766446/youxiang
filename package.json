@@ -1,0 +1,19 @@
+{
+  "name": "product-selection-system",
+  "version": "1.0.0",
+  "description": "达人商品选品系统（移动端优先）",
+  "type": "commonjs",
+  "main": "server/index.js",
+  "scripts": {
+    "gen-data": "node scripts/gen-sample-data.js",
+    "start": "node server/index.js",
+    "dev": "node server/index.js"
+  },
+  "dependencies": {
+    "exceljs": "^4.4.0",
+    "express": "^4.19.2",
+    "nodemailer": "^6.9.14",
+    "puppeteer-core": "^25.6.0",
+    "xlsx": "^0.18.5"
+  }
+}
